@@ -1,30 +1,64 @@
 #include <stdio.h>
 
+struct Employee {
+    int id;
+    char name[50];
+    float salary;};
+
 int main() {
+    struct Employee employees[999]; 
+    int numEmployees = 0;
+    int choice;
+    do {
+        printf("Employee Management System\n");
+        printf("Menu:\n");
+        printf("1. Add an employee\n");
+        printf("2. Display employee details\n");
+        printf("3. Calculate average salary\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
 
-    char statement[30];
-    int alphabets = 0;
-    int digits = 0;
-    int specialChars = 0;
+        switch (choice) {
+            case 1:
+                printf("Enter employee ID: ");
+                scanf("%d", &employees[numEmployees].id);
+                printf("Enter employee name: ");
+                scanf("%s", employees[numEmployees].name);
+                printf("Enter employee salary: ");
+                scanf("%f", &employees[numEmployees].salary);
+                numEmployees++;
+                printf("Employee added successfully!\n");
+                break;
+            case 2:
+                printf("\nEmployee Details:\n");
+                for (int i = 0; i < numEmployees; i++) {
+                    printf("ID: %d\n", employees[i].id);
+                    printf("Name: %s\n", employees[i].name);
+                    printf("Salary: $%.2f\n", employees[i].salary);
+                }
+                break;
+            case 3:
+                if (numEmployees > 0) {
+                    float totalSalary = 0;
+                    for (int i = 0; i < numEmployees; i++) {
+                        totalSalary += employees[i].salary;
+                    }
+                    float averageSalary = totalSalary / numEmployees;
+                    printf("Average salary: $%.2f\n", averageSalary);
+                } else {
+                    printf("No employees found!\n");
+                }
+                break;
 
-    printf("Input the string: ");
-    fgets(statement, sizeof(statement), stdin);
+            case 4:
+                printf("Exiting the program...\n");
+                break;
 
-    for (int i = 0; statement[i] != '\0'; i++) {
-        if ((statement[i] >= 'a' && statement[i] <= 'z') || (statement[i] >= 'A' && statement[i] <= 'Z'))
-            alphabets++;
-        else if (statement[i] >= '0' && statement[i] <= '9')
-            digits++;
-        else if (statement[i] != '\n')
-            specialChars++;
-    }
-
-    
-    printf("Alphabets in the string: %d\n", alphabets);
-    printf("Digits in the string: %d\n", digits);
-    printf("Special characters in the string: %d\n", specialChars);
-    printf("==============================");
-    printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            default:
+                printf("Invalid choice! Please enter a valid option.\n");
+                break;} printf("\n");
+    } while (choice != 4);
 
     return 0;
 }

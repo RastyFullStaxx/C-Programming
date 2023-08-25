@@ -1,33 +1,49 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-struct studentRecord {
-    int studentID;
-    char firstName[50];
-    char lastName[50];
-    int totalUnitsCompleted;
-    float accumulatedGPA;
+struct inputzz
+{
+    char inputzz[30];
 };
 
-int main() {
+int vowels(const char* index){
 
-    struct studentRecord student;
+    int count = 0;
+    for (int i=0;index[i] != '\0'; i++){
+        char idx = tolower(index[i]);
+        if (idx=='a'||idx=='e'||idx=='i'||idx=='o'||idx=='u'){
+            count++;} }
+    return count;
+}
 
-    student.studentID = 213321;
-    strcpy(student.firstName, "Rasty");
-    strcpy(student.lastName, "Esparsszs");
-    student.totalUnitsCompleted = 200;
-    student.accumulatedGPA = 1.00;
+int main(){
 
-    printf("==============================\n");
-    printf("\nStudent Record:\n");
-    printf("Student ID: %d\n", student.studentID);
-    printf("First Name: %s\n", student.firstName);
-    printf("Last Name: %s\n", student.lastName);
-    printf("Total Units Completed: %d\n", student.totalUnitsCompleted);
-    printf("Accumulated GPA: %.2f\n", student.accumulatedGPA);
-    printf("\n==============================");
-    printf("\n\n\n\n");
+    char temp[30];
+
+    printf("Enter a word hihi: ");
+    scanf("%s", &temp);
+
+    struct inputzz palinedrome1;  
+
+    strcpy(palinedrome1.inputzz, temp);
+    printf("Entered word: %s ", palinedrome1.inputzz);
+
+    //Reversing the inputted word
+    strrev(palinedrome1.inputzz);
+    printf("\nReversed Format: %s ", palinedrome1.inputzz);
+
+    //Checking the whether it is a palindrome
+    if (strnicmp(palinedrome1.inputzz, temp, 30) == 0){
+        printf("\nPalindrome");
+    } else {
+        printf("\nNot a palindrome"); } 
+
+    //Counting the Vowels
+    int vowelzz = vowels(temp);
+    printf("\nThe number of vowels found: %d ", vowelzz);
+    printf("\n\n\n");
+
 
     return 0;
 }
