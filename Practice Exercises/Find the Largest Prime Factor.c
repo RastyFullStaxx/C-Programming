@@ -14,13 +14,10 @@ long long largestPrimeFactor(long long num) {
             num /= i;
         }
     }
-    
     if (num > 2) {
         maxPrime = num;
     }
-    
-    return maxPrime;
-}
+    return maxPrime;}
 
 int main() {
     long long n;
@@ -32,5 +29,4 @@ int main() {
     
     printf("Largest prime factor: %lld\n", result);
     
-    return 0;
-}
+    return 0;}
