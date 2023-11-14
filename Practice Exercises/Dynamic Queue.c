@@ -26,4 +26,32 @@ void enqueue(struct Queue* queue, int value) {
 }
 
 int dequeue(struct Queue* queue) {
-    if (queue
+    if (queue->front == NULL) {
+        printf("Queue is empty.\n");
+        return -1; // Assuming -1 represents an error or empty queue
+    }
+
+    struct Node* temp = queue->front;
+    int value = temp->data;
+
+    queue->front = temp->next;
+    if (queue->front == NULL) {
+        queue->rear = NULL;
+    }
+
+    free(temp);
+    return value;
+}
+
+int main() {
+    struct Queue queue = {NULL, NULL};
+
+    enqueue(&queue, 10);
+    enqueue(&queue, 20);
+    enqueue(&queue, 30);
+
+    printf("Dequeued element: %d\n", dequeue(&queue));
+
+    // Free memory...
+    return 0;
+}
